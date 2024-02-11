@@ -4,5 +4,6 @@
     "ca-central-1b",
     "ca-central-1d"
   ],
-  "ami:account=673460939792:filters.image-type.0=machine:filters.name.0=fck-nat-al2023-*-arm64-ebs:filters.state.0=available:owners.0=568608671756:region=ca-central-1": "ami-045d3a84706b8feeb"
+  "ami:account=673460939792:filters.image-type.0=machine:filters.name.0=fck-nat-al2023-*-arm64-ebs:filters.state.0=available:owners.0=568608671756:region=ca-central-1": "ami-045d3a84706b8feeb",
+  "ssm:account=673460939792:parameterName=/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-6.1-arm64:region=ca-central-1": "ami-0a3bde8938b659e0e"
 }
