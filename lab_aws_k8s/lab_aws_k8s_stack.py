@@ -1,6 +1,4 @@
-from aws_cdk import (
-    Stack,
-)
+from aws_cdk import Stack, Tags
 from constructs import Construct
 import aws_cdk.aws_ec2 as ec2
 import cdk_fck_nat
@@ -21,6 +19,10 @@ class LabAwsK8SStack(Stack):
             ec2.Peer.ipv4(vpc.vpc_cidr_block), ec2.Port.all_traffic()
         )
 
+        with open("cp-userdata.txt", "r") as f:
+            userdata = f.read()
+        userdata_cp1 = ec2.UserData.for_linux()
+        userdata_cp1.add_commands(userdata)
         instance_cp1 = ec2.Instance(
             self,
             "cp1",
@@ -33,4 +35,6 @@ class LabAwsK8SStack(Stack):
             vpc=vpc,
             ssm_session_permissions=True,
             user_data_causes_replacement=True,
+            user_data=userdata_cp1,
         )
+        Tags.of(instance_cp1).add(key="ssm", value="cp1")
