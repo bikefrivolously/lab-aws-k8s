@@ -21,7 +21,7 @@ class LabAwsK8SStack(Stack):
 
         with open("cp-userdata.txt", "r") as f:
             userdata = f.read()
-        userdata_cp1 = ec2.UserData.for_linux(shebang="/bin/bash -xe")
+        userdata_cp1 = ec2.UserData.for_linux(shebang="#!/bin/bash -xe")
         userdata_cp1.add_commands(userdata)
         instance_cp1 = ec2.Instance(
             self,
