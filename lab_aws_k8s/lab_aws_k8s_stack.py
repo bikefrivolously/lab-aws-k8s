@@ -16,7 +16,7 @@ class LabAwsK8SStack(Stack):
                 ec2.InstanceClass.T4G, ec2.InstanceSize.NANO
             )
         )
-        vpc = ec2.Vpc(self, "k8-vpc", nat_gateway_provider=nat_provider)
+        vpc = ec2.Vpc(self, "k8-vpc", nat_gateway_provider=nat_provider, nat_gateways=1)
         nat_provider.security_group.add_ingress_rule(
             ec2.Peer.ipv4(vpc.vpc_cidr_block), ec2.Port.all_traffic()
         )
