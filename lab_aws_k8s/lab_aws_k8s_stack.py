@@ -1,6 +1,8 @@
 from aws_cdk import Stack, Tags
 from constructs import Construct
 import aws_cdk.aws_ec2 as ec2
+import aws_cdk.aws_iam as iam
+
 import cdk_fck_nat
 
 
@@ -37,4 +39,8 @@ class LabAwsK8SStack(Stack):
             user_data_causes_replacement=True,
             user_data=userdata_cp1,
         )
+        instance_cp1.role.add_managed_policy(
+            iam.ManagedPolicy.from_aws_managed_policy_name("AmazonEKS_CNI_Policy")
+        )
+
         Tags.of(instance_cp1).add(key="ssm", value="cp1")
