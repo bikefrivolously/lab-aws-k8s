@@ -27,7 +27,7 @@ class LabAwsK8SStack(Stack):
             self,
             "cp1",
             instance_type=ec2.InstanceType.of(
-                ec2.InstanceClass.T4G, ec2.InstanceSize.MICRO
+                ec2.InstanceClass.T4G, ec2.InstanceSize.SMALL
             ),
             machine_image=ec2.MachineImage.latest_amazon_linux2023(
                 cpu_type=ec2.AmazonLinuxCpuType.ARM_64, cached_in_context=True
